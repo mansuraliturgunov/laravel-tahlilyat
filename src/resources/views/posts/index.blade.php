@@ -42,7 +42,12 @@
                         </div>
                     </div>
                     @endforeach
+                    {{$posts->links()}}
                 </div>
             </div>
-    </div>
+            
+                
+
+        
+        </div>
 </x-layouts.main>
