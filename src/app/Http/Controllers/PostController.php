@@ -15,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts=Post::all();
+        $posts=Post::paginate(3);
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -30,7 +30,7 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePostRequest $request)
+    public function store(Request $request)
     {
         
         $photoPath = $request->file('photo')->store('photos', 'public');
