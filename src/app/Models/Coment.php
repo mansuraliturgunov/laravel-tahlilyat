@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Coment extends Model
 {
-    public function post(){
+    public function post()
+    {
         return $this->belongsTo(Post::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
