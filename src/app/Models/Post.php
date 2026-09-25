@@ -11,4 +11,10 @@ class Post extends Model
         'body',
         'photo'
     ];
+
+    public function coments() {
+
+        return $this->hasMany(Coment::class);
+        
+    }
 }
