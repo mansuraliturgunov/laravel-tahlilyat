@@ -52,8 +52,8 @@
                         <p class="text-secondary mb-2" style="font-size: 0.95rem; line-height: 1.5;">
                             {{$coment->body}}
                         </p>
-                        <button class="btn btn-sm btn-light text-muted px-3 rounded-pill fw-semibold"
-                            style="font-size: 0.8rem;">
+                        <button class="btn btn-sm  text-muted px-3 rounded-pill fw-semibold"
+                            style="font-size: 0.8rem; border:1px solid gray">
                             Reply
                         </button>
                     </div>
