@@ -11,11 +11,14 @@ class Post extends Model
     
     protected $fillable = [
         'user_id',
+        'category_id',
         'title',
         'body',
         'photo'
     ];
-
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
     public function coments()
     {
         return $this->hasMany(Coment::class);
