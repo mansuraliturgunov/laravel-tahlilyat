@@ -21,6 +21,7 @@ class PostFactory extends Factory
             'user_id' => 1,
             'title' => fake()->sentence(4),
             'body' => fake()->sentence(50),
+            'photo' => 'photos/1qvV6cCGh9YbW1sH8bUlk9mhXBhPYODMaCT1Rgf8.jpg'
         ];
     }
 }

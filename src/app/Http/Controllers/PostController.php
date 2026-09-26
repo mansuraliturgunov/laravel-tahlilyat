@@ -36,6 +36,7 @@ class PostController extends Controller
         $photoPath = $request->file('photo')->store('photos', 'public');
 
         Post::create([
+            'user_id' => 1,
             'title' => $request->title,
             'body' => $request->body,
             'photo' => $photoPath
