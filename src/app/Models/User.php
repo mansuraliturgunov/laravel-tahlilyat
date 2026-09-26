@@ -29,8 +29,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-
     
+    protected $fillable = [
+        'name', 
+        'email', 
+        'photo', 
+        'password'
+    ];
+
     public function posts()
     {
         return $this->hasMany(Post::class);
