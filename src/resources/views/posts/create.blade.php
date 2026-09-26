@@ -4,7 +4,7 @@
     </x-slot>
     <div class="container mt-5">
         <div class="col-12 col-xl-8">
-            <form action='{{ route('posts.store')}}' method="POST" enctype="multipart/form-data">
+            <form action='{{ route('posts.store') }}' method="POST" enctype="multipart/form-data">
                 <div class="panel-header">
                     @csrf
                 </div>
@@ -14,19 +14,28 @@
                         <input class="form-control" name="photo" type="file" required>
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label" for="title">Sarlavha</label> 
+                        <label class="form-label" for="title">Sarlavha</label>
                         <input class="form-control" name="title" type="text" required>
                     </div>
                     
-                    
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Kategoriya</label>
+                        <select class="form-select" id="category" name="category_id">
+                            <option selected disabled>Kategoriyani tanlang</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     <div class="col-12"><label class="form-label" for="body">Post matni</label>
                         <textarea class="form-control" name="body" rows="4" placeholder="Yangi postni batafsil yozishingiz mumkin"></textarea>
                     </div>
                 </div>
                 <div class="d-flex flex-wrap justify-content-end gap-2 mt-4">
-                   
-                    <a class="btn btn-outline-secondary" href="{{route('posts.index')}}">orqaga</a>
-                    
+
+                    <a class="btn btn-outline-secondary" href="{{ route('posts.index') }}">orqaga</a>
+
                     <button class="btn btn-primary" type="submit">
                         <i class="bi bi-person-check" aria-hidden="true"></i>
                         Saqlash
