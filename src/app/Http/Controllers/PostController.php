@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
+use App\Models\Actor;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -26,7 +27,8 @@ class PostController extends Controller
     public function create()
     {
         return view('posts.create')->with([
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'actors' => Actor::all(),
         ]);
     }
 
@@ -35,16 +37,22 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         
         $photoPath = $request->file('photo')->store('photos', 'public');
 
-        Post::create([
+        $post = Post::create([
             'user_id' => 1,
             'category_id' => $request->category_id,
             'title' => $request->title,
             'body' => $request->body,
             'photo' => $photoPath
         ]);
+        if(isset($request->actors)){
+            foreach($request->actors as $actor){
+                $post->actors()->attach($actor); 
+            }
+        }
 
         return redirect()->route('posts.index');
     }

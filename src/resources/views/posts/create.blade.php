@@ -17,7 +17,7 @@
                         <label class="form-label" for="title">Sarlavha</label>
                         <input class="form-control" name="title" type="text" required>
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="category" class="form-label">Kategoriya</label>
                         <select class="form-select" id="category" name="category_id">
@@ -26,6 +26,18 @@
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label d-block fw-semibold">Aktyorlarni tanlang</label>
+                        <div class="d-flex flex-wrap gap-2">
+                            @foreach ($actors as $actor)
+                                <input type="checkbox" class="btn-check" id="actor-{{ $actor->id }}" name="actors[]"
+                                    value="{{ $actor->id }}" autocomplete="off">
+                                <label class="btn btn-outline-primary btn-sm rounded-pill px-3" for="actor-{{ $actor->id }}">
+                                    {{ $actor->name }}
+                                </label>
+                            @endforeach
+                        </div>
                     </div>
 
                     <div class="col-12"><label class="form-label" for="body">Post matni</label>

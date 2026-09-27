@@ -28,7 +28,7 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function actor() {
+    public function actors() {
         return $this->belongsToMany(Actor::class);
     }
 }
