@@ -6,11 +6,23 @@
 
     <div class="col-lg-8 mx-auto p-4 py-md-5 ">
         <img src="{{ asset('storage/' . $post->photo) }}" alt="{{ $post->title }}" class="bd-placeholder-img card-img-top"
-            preserveAspectRatio="xMidYMid slice" role="img" >
+            preserveAspectRatio="xMidYMid slice" role="img">
 
-        <h1 class="text-body-emphasis">{{ $post->title }}</h1>
-        <div class="btn-group" style="color: gray">
-            <p>{{$post->category->name}} </p>
+        <h1 class="text-body-emphasis mb-2">{{ $post->title }}</h1>
+
+        <div class="text-secondary small mb-3">
+            <span>Film janri:</span>
+            <span class="text-light fw-medium">{{ $post->category->name }}</span>
+        </div>
+
+        <div class="d-flex align-items-center flex-wrap gap-2 my-2">
+            <span class="text-secondary small">Bosh rollarda:</span>
+            @foreach ($post->actors as $actor)
+                <span
+                    class="badge border border-primary text-light-emphasis bg-transparent px-3 py-2 rounded-pill fw-normal">
+                    {{ $actor->name }}
+                </span>
+            @endforeach
         </div>
         <p class="fs-5 col-md-8">{{ $post->body }}</p>
         <small class="text-body-secondary">{{ $post->created_at }} </small>
