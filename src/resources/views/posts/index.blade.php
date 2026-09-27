@@ -11,6 +11,7 @@
                 </p>
                 <p>
                     <a href="/" class="btn btn-primary my-2">Bosh Sahifa</a>
+                    <a href="{{ route('posts.create') }}" class="btn btn-primary my-2">post yaratish</a>
                 </p>
             </div>
         </div>
