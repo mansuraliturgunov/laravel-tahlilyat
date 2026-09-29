@@ -18,7 +18,3 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Coments avvalgidek qoladi
 Route::resource('coments', ComentController::class);
-
-// Postslar esa 2 ga bo'linadi:
-Route::resource('posts', PostController::class)->except(['index', 'show'])->middleware('auth');
-Route::resource('posts', PostController::class)->only(['index', 'show']);
