@@ -1,5 +1,3 @@
-
-
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"><img height="25px" src="../photos/tahilyat.png" alt=""></a>
@@ -13,6 +11,22 @@
                 <li class="nav-item"> <a class="nav-link " aria-current="page" href="./">Bosh sahifa</a> </li>
                 <li class="nav-item"> <a class="nav-link" href="{{ route('posts.index') }}">Postlar</a> </li>
                 <li class="nav-item"> <a class="nav-link " href="{{ route('about') }}">Biz haqimizda</a> </li>
+                @auth
+                    <li class="nav-item"> <a class="nav-link " href="{{ route('posts.create') }}">Post yaratish</a> </li>
+                @endauth
+
+                <div class="d-flex align-items-center gap-2 ms-auto">
+                    @auth
+                        <!-- Agar login qilgan bo'lsa -->
+                        <form method="POST" action="{{ route('logout') }}" class="m-0">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Chiqish</button>
+                        </form>
+                    @else
+                        <!-- Agar mehmon bo'lsa -->
+                        <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm">Kirish</a>
+                    @endauth
+                </div>
             </ul>
         </div>
     </div>

@@ -15,9 +15,10 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
+   
     public function index()
     {
-        $posts=Post::latest()->paginate(9);
+        $posts = Post::latest()->paginate(9);
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -38,7 +39,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        
+
         $photoPath = $request->file('photo')->store('photos', 'public');
 
         $post = Post::create([
@@ -48,9 +49,9 @@ class PostController extends Controller
             'body' => $request->body,
             'photo' => $photoPath
         ]);
-        if(isset($request->actors)){
-            foreach($request->actors as $actor){
-                $post->actors()->attach($actor); 
+        if (isset($request->actors)) {
+            foreach ($request->actors as $actor) {
+                $post->actors()->attach($actor);
             }
         }
 
@@ -61,7 +62,7 @@ class PostController extends Controller
      * Display the specified resource.
      */
     public function show(POST $post)
-    {   
+    {
         // dd($post);   
         return view('posts.show')->with('post', $post);
     }
@@ -79,29 +80,28 @@ class PostController extends Controller
      */
     public function update(Request $request, POST $post)
     {
-        $data=[
+        $data = [
             'title' => $request->title,
             'body' => $request->body
         ];
 
         if ($request->hasFile('photo')) {
-        Storage::disk('public')->delete($post->photo);
-        
-        $data['photo'] = $request->file('photo')->store('photos', 'public');
-    }
+            Storage::disk('public')->delete($post->photo);
+
+            $data['photo'] = $request->file('photo')->store('photos', 'public');
+        }
 
         $post->update($data);
         return redirect()->route('posts.index');
-
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Post $post)
-    { 
+    {
         if (isset($post->photo)) {
-        Storage::disk('public')->delete($post->photo);
+            Storage::disk('public')->delete($post->photo);
         }
 
         $post->delete();
