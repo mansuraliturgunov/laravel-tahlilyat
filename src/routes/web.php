@@ -16,7 +16,6 @@ Route::get('/login', [PageContoller::class, 'login'])->name('login');
 Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::resources([
-    'posts' => PostController::class,
-    'coments' => ComentController::class,
-]);
+// Coments avvalgidek qoladi
+Route::resource('coments', ComentController::class);
+
