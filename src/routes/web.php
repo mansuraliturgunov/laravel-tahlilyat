@@ -20,3 +20,7 @@ Route::post('register_store', [AuthController::class, 'register_store'])->name('
 
 // Coments avvalgidek qoladi
 Route::resource('coments', ComentController::class);
+
+// Postslar esa 2 ga bo'linadi:
+Route::resource('posts', PostController::class)->except(['index', 'show'])->middleware('auth');
+Route::resource('posts', PostController::class)->only(['index', 'show']);
