@@ -2,14 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    public function register()
+    {
+        return view('auth.register');
+    }
+    function register_store(Request $request)
+    {
 
+        $validate = $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users,username',
+            'password' => 'required|min:8',
+            'password_confirmation' => 'required|same:password'
+        ]);
+
+        $validate['password']= Hash::make($validate['password']);
+        dd($validate);
+        $user = User::create($validate);
+
+        Auth::login($user);
+
+        return redirect('/')->with('success', "Account successfully registered.");
+    }
     public function authenticate(Request $request): RedirectResponse
     {
 

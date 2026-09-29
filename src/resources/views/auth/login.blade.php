@@ -18,7 +18,7 @@
                 <label name='password' for="floatingPassword">Password</label>
             </div>
             <button class="btn btn-primary w-100 py-2 mt-2" type="submit">Sign in</button>
-            <a class="nav-link btn btn-primary w-100 py-2 mt-2 " href="{{ route('about') }}">Royhatdan o'tish</a>
+            <a class="nav-link btn btn-primary w-100 py-2 mt-2 " href="{{ route('register') }}">Royhatdan o'tish</a>
             
             <p class="mt-5 mb-3 text-body-secondary">&copy; Tahlilyatga kirish</p>
         </form>

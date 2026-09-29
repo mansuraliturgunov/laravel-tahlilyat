@@ -15,6 +15,8 @@ Route::get('/about', [PageContoller::class, 'about'])->name('about');
 Route::get('/login', [PageContoller::class, 'login'])->name('login');
 Route::post('/authenticate', [AuthController::class, 'authenticate'])->name('authenticate');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('register_store', [AuthController::class, 'register_store'])->name('register_store');
 
 // Coments avvalgidek qoladi
 Route::resource('coments', ComentController::class);
