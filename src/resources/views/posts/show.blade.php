@@ -12,12 +12,13 @@
 
         <div class="text-secondary small mb-3">
             <span>Film janri:</span>
-            <span class="badge border border-primary text-light-emphasis bg-transparent px-3 py-2 rounded-pill fw-normal">{{ $post->category->name }}</span>
+            <span
+                class="badge border border-primary text-light-emphasis bg-transparent px-3 py-2 rounded-pill fw-normal">{{ $post->category->name }}</span>
         </div>
 
         <div class="d-flex align-items-center flex-wrap gap-2 my-2">
             <span class="text-secondary small">Bosh rollarda:</span>
-            @foreach ($post->actors as $actor)  
+            @foreach ($post->actors as $actor)
                 <span
                     class="badge border border-primary text-light-emphasis bg-transparent px-3 py-2 rounded-pill fw-normal">
                     {{ $actor->name }}
@@ -76,25 +77,47 @@
             @endforeach
             <!-- /Bitta izoh bloki tugadi -->
         </div>
-        <div class="container mt-5">
-            <form action='{{ route('coments.store') }}' method="POST">
-                @csrf
-                <input type="hidden" name="post_id" value="{{ $post->id }}">
+        @auth
+            <div class="container mt-4">
+                <form action="{{ route('coments.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="post_id" value="{{ $post->id }}">
 
-                <div class="col-12"><label class="form-label" for="body">Izohlar uchun</label>
-                    <textarea class="form-control" name="body" rows="4" placeholder="post haqida fikr bildirishingiz mumkin :)"></textarea>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="body">Izoh qoldirish</label>
+                        <textarea class="form-control" name="body" rows="3" placeholder="Post haqida fikr bildirishingiz mumkin..."
+                            required></textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-primary d-flex align-items-center gap-2" type="submit">
+                            <span>Yuborish</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-send" viewBox="0 0 16 16">
+                                <path
+                                    d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        @else
+            <div
+                class="alert alert-light border d-flex align-items-center justify-content-between p-3 my-4 rounded-3 shadow-sm">
+                <div class="d-flex align-items-center gap-2 text-muted">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                        class="bi bi-info-circle text-primary" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                        <path
+                            d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+                    </svg>
+                    <span>Izoh qoldirish uchun hisobingizga kiring.</span>
                 </div>
-        </div>
-        <div class="d-flex flex-wrap justify-content-end gap-2 mt-4">
-            <button class="btn btn-primary" type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-send" viewBox="0 0 16 16">
-                    <path
-                        d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
-                </svg>
-            </button>
-            </form>
-        </div>
+                <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm px-3 fw-semibold">
+                    Kirish
+                </a>
+            </div>
+        @endauth
         <div class="mb-5 mt-5" style="text-align: center">
             <a href="{{ route('posts.index') }}" class="btn btn-primary btn-lg px-4">Yangi Postlar</a>
         </div>
