@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -73,6 +74,8 @@ class PostController extends Controller
      */
     public function edit(post $post)
     {
+        Gate::authorize('update-post', $post);
+        
         return view('posts.edit')->with('post', $post);
     }
 
@@ -101,6 +104,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        Gate::authorize('update-post', $post);
+
         if (isset($post->photo)) {
             Storage::disk('public')->delete($post->photo);
         }
