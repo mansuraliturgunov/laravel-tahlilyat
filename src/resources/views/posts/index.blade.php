@@ -11,7 +11,7 @@
                 </p>
                 <p>
                     <a href="/" class="btn btn-primary my-2">Bosh Sahifa</a>
-                    
+
                 </p>
             </div>
         </div>
@@ -28,10 +28,27 @@
                             <img src="{{ asset('storage/' . $post->photo) }}" alt="{{ $post->title }}"
                                 class="bd-placeholder-img card-img-top" style="height: 220px; object-fit: cover;">
                             <div class="card-body">
-                                <a class="nav-link" href="#">
-                                    <h5> {{ $post->title }} </h5>
-                                    <div class="btn-group" style="color: gray">
-                                        <p>{{$post->category->name}} </p>
+                                <a class="nav-link text-dark p-0" href="#">
+                                    <h5 class="fw-bold mb-2">{{ $post->title }}</h5>
+
+                                    <!-- Muallif va Kategoriya qatori -->
+                                    <div class="d-flex align-items-center justify-content-between mb-3">
+                                        <div class="d-flex align-items-center text-muted small">
+                                            <!-- Foydalanuvchi iconkasi (SVG) -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                                fill="currentColor" class="bi bi-person-circle me-1"
+                                                viewBox="0 0 16 16">
+                                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                            </svg>
+                                            <span class="fw-semibold text-secondary">{{ $post->user->name }}</span>
+                                        </div>
+
+                                        <span
+                                            class="badge bg-light text-primary border border-primary-subtle text-capitalize">
+                                            {{ $post->category->name }}
+                                        </span>
                                     </div>
                                 </a>
                                 <p class="card-text"> {{ $post->body }}</p>

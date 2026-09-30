@@ -7,6 +7,7 @@ use App\Models\Actor;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -43,7 +44,7 @@ class PostController extends Controller
         $photoPath = $request->file('photo')->store('photos', 'public');
 
         $post = Post::create([
-            'user_id' => 1,
+            'user_id' => Auth::user()->id,
             'category_id' => $request->category_id,
             'title' => $request->title,
             'body' => $request->body,

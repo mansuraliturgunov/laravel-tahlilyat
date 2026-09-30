@@ -12,12 +12,12 @@
 
         <div class="text-secondary small mb-3">
             <span>Film janri:</span>
-            <span class="text-light fw-medium">{{ $post->category->name }}</span>
+            <span class="badge border border-primary text-light-emphasis bg-transparent px-3 py-2 rounded-pill fw-normal">{{ $post->category->name }}</span>
         </div>
 
         <div class="d-flex align-items-center flex-wrap gap-2 my-2">
             <span class="text-secondary small">Bosh rollarda:</span>
-            @foreach ($post->actors as $actor)
+            @foreach ($post->actors as $actor)  
                 <span
                     class="badge border border-primary text-light-emphasis bg-transparent px-3 py-2 rounded-pill fw-normal">
                     {{ $actor->name }}
