@@ -28,8 +28,9 @@
         <p class="fs-5 col-md-8">{{ $post->body }}</p>
         <small class="text-body-secondary">{{ $post->created_at }} </small>
         <hr class="col-3 col-md-2 mb-5">
+
         @auth
-            @can('update-post', $post)
+            @canany(['update', 'delete'], $post)
                 <div class="btn-group">
                     <a class="btn btn-sm btn-outline-secondary" href="{{ route('posts.edit', [$post->id]) }}">Post edit</a>
                 </div>
@@ -40,8 +41,9 @@
                         <button class="btn btn-sm btn-outline-danger" type="submit">Delete Post</button>
                     </form>
                 </div>
-            @endcan
+            @endcanany
         @endauth
+
         <!-- Izohlar bo'limi boshlanishi -->
         <div class="mt-5">
             <!-- Sarlavha qismi (yonidagi yashil chiziqcha bilan) -->
