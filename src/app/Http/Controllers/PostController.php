@@ -84,6 +84,8 @@ class PostController extends Controller
      */
     public function update(Request $request, POST $post)
     {
+        Gate::authorize('update-post', $post);
+
         $data = [
             'title' => $request->title,
             'body' => $request->body
@@ -104,7 +106,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        Gate::authorize('update-post', $post);
+        Gate::authorize('delete-post', $post);
 
         if (isset($post->photo)) {
             Storage::disk('public')->delete($post->photo);

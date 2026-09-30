@@ -29,18 +29,18 @@
         <small class="text-body-secondary">{{ $post->created_at }} </small>
         <hr class="col-3 col-md-2 mb-5">
         @auth
-
-
-            <div class="btn-group">
-                <a class="btn btn-sm btn-outline-secondary" href="{{ route('posts.edit', [$post->id]) }}">Post edit</a>
-            </div>
-            <div class="btn-group">
-                <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-sm btn-outline-danger" type="submit">Delete Post</button>
-                </form>
-            </div>
+            @can('update-post', $post)
+                <div class="btn-group">
+                    <a class="btn btn-sm btn-outline-secondary" href="{{ route('posts.edit', [$post->id]) }}">Post edit</a>
+                </div>
+                <div class="btn-group">
+                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-sm btn-outline-danger" type="submit">Delete Post</button>
+                    </form>
+                </div>
+            @endcan
         @endauth
         <!-- Izohlar bo'limi boshlanishi -->
         <div class="mt-5">
